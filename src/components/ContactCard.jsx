@@ -1,25 +1,95 @@
-import { Edit, Trash2, Star } from "lucide-react";
+import React from "react";
 
-const ContactCard = ({ contact, onEdit, onDelete, onFavorite }) => (
-  <div className="bg-[#111] text-white p-4 rounded-2xl shadow-md flex justify-between items-center border border-gray-700 card-hover">
-    <div>
-      <h3 className="text-lg font-semibold">{contact.name}</h3>
-      <p className="text-gray-400">{contact.email}</p>
-      <p className="text-gray-400">{contact.phone}</p>
-      <p className="text-sm text-indigo-400">{contact.tag}</p>
+/*
+  Modern contact card with gradient accents and button animations.
+  Props:
+    - contact
+    - onEdit (fn)
+    - onDelete (fn that accepts id)
+    - onFavorite (fn that accepts id)
+*/
+
+const ContactCard = ({ contact, onEdit, onDelete, onFavorite, onView }) => {
+  return (
+    <div
+      className="relative card-glow card-hover bg-gradient-to-br from-[#07142a] to-[#071b2f] border border-white/5 rounded-2xl p-4 shadow-lg flex flex-col sm:flex-row items-start gap-4 w-full"
+      role="group"
+    >
+      <div
+        className="flex items-start gap-4 w-full cursor-pointer"
+        onClick={() => onView && onView(contact)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onView && onView(contact);
+        }}
+      >
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white font-semibold text-lg shadow-md flex-shrink-0">
+          {contact.name ? contact.name[0].toUpperCase() : "?"}
+        </div>
+
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <div className="text-lg sm:text-xl font-extrabold text-white leading-tight">
+                <span className="text-gradient-animated">{contact.name || "Unnamed"}</span>
+              </div>
+              <div className="text-xs text-gray-400 mt-0.5">{contact.email || "No email"}</div>
+            </div>
+          </div>
+
+          <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="min-w-0">
+              <div className="text-xs text-gray-400">Phone</div>
+              <div className="text-sm text-white break-words whitespace-normal">{contact.phone || "—"}</div>
+            </div>
+
+            <div className="min-w-[100px]">
+              <div className="text-xs text-gray-400">Tag</div>
+              <div className="inline-block mt-1 px-3 py-1 text-sm rounded-full bg-white/6 text-gray-200 break-words whitespace-normal">
+                {contact.tag || "—"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 ml-auto">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onFavorite && onFavorite(contact.id);
+          }}
+          className={`p-2 rounded-md transition-transform active:scale-95 ${contact.favorite ? "text-yellow-400" : "text-gray-300 hover:text-yellow-300"}`}
+          title="Toggle favorite"
+        >
+          {contact.favorite ? "★" : "☆"}
+        </button>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onEdit && onEdit();
+          }}
+          className="p-2 rounded-md text-indigo-200 hover:text-white"
+          title="Edit"
+        >
+          ✎
+        </button>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete && onDelete(contact.id);
+          }}
+          className="p-2 rounded-md text-red-300 hover:text-white"
+          title="Delete"
+        >
+          🗑
+        </button>
+      </div>
     </div>
-    <div className="flex gap-3">
-      <button onClick={() => onFavorite(contact.id)}>
-        <Star className={`w-5 h-5 ${contact.favorite ? "text-yellow-400 fill-yellow-400" : "text-gray-400"}`} />
-      </button>
-      <button onClick={() => onEdit(contact)} className="text-indigo-400 hover:text-indigo-300">
-        <Edit className="w-5 h-5" />
-      </button>
-      <button onClick={() => onDelete(contact.id)} className="text-red-400 hover:text-red-300">
-        <Trash2 className="w-5 h-5" />
-      </button>
-    </div>
-  </div>
-);
+  );
+};
 
 export default ContactCard;
