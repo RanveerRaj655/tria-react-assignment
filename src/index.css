@@ -1,0 +1,40 @@
+@import "tailwindcss";
+/* Smooth fonts + gradient glow aesthetic */
+body {
+  @apply bg-[#0b0b0b] text-white font-sans antialiased;
+}
+
+/* Scrollbar styling for dark UI */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f46e5, #7c3aed);
+  border-radius: 10px;
+}
+
+/* Reusable card hover effect */
+.card-hover {
+  @apply transition-all duration-300 ease-in-out hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-600/20;
+}
+
+/* Modal fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-animate {
+  animation: fadeIn 0.2s ease-in-out;
+}
