@@ -93,9 +93,9 @@ const Home = () => {
         <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-purple-300">
-              Tria Neobank — Contacts
+              Tria — Contacts
             </h1>
-            <p className="text-sm text-gray-400 mt-1">Manage contacts with a modern responsive UI.</p>
+            
           </div>
 
           {hasAnyContacts && (

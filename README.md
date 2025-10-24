@@ -1,16 +1,83 @@
-# React + Vite
+# Tria — Contacts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React + Vite contacts UI built with Tailwind CSS. Features a modern gradient UI, animated toasts, responsive layout and localStorage persistence.
 
-Currently, two official plugins are available:
+## Notable features
+- Add / Edit / Delete contacts
+- View contact details in a read-only modal
+- Favorite contacts and a "Favorite" tab
+- Tabs: All, Frequent, Recent, Favorite
+- Search (type + press Enter or click Enter button) and Clear search
+- Empty-state and "No contact found" states
+- Toast notifications for Add / Edit / Delete (animated)
+- LocalStorage persistence — data remains after page refresh
+- Fully responsive UI with animated gradient text and colorful glowing card backdrops
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Folder structure
+```
+tria-react-assignment/
+├─ public/
+├─ src/
+│  ├─ assets/
+│  ├─ components/
+│  │  ├─ ContactCard.jsx
+│  │  ├─ ContactModal.jsx
+│  │  ├─ ContactViewModal.jsx
+│  │  ├─ Tabs.jsx
+│  │  └─ Toasts.jsx
+│  ├─ pages/
+│  │  └─ Home.jsx
+│  ├─ App.jsx
+│  ├─ main.jsx
+│  ├─ data.js
+│  └─ index.css
+├─ index.html
+├─ package.json
+├─ tailwind.config.js
+└─ vite.config.js
+```
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Setup & run (Windows)
+1. Install Node.js (v16+ recommended).
+2. Clone repo and install:
+   - Open terminal in desired folder:
+     - git clone <your-github-repo-url>
+     - cd tria-react-assignment
+     - npm install
+3. Run locally:
+   - npm run dev
+   - Open http://localhost:5173 (Vite will print the URL)
 
-## Expanding the ESLint configuration
+Build for production:
+- npm run build
+- npm run preview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+
+## Deployed app
+Demo: https://triatask.vercel.app/
+
+## Assumptions & design choices
+- LocalStorage is used for persistence to keep the app simple (no backend).
+- Search is explicit (user presses Enter / clicks Enter) to avoid frequent re-filtering on every keystroke.
+- Contact IDs are generated using Date.now() for simplicity — replace with UUID in production if needed.
+- Minimal validation is applied in the modal; you can extend validation rules as needed.
+- Animations and gradients use Tailwind utility classes + a few custom CSS rules in index.css for consistency and rapid iteration.
+
+## Libraries & tooling
+- React — UI
+- Vite — fast dev server and build
+- Tailwind CSS — utility-first styling and responsive utilities
+- No heavy component libraries to keep bundle small and styling fully customizable
+
+## Files of interest
+- src/pages/Home.jsx — main page + state management (localStorage, search, tabs, toasts)
+- src/components/ContactModal.jsx — add/edit modal
+- src/components/ContactViewModal.jsx — view-only modal
+- src/components/ContactCard.jsx — row-style contact card (click to view)
+- src/components/Toasts.jsx — animated toast component
+- src/index.css — custom gradient / glow styles + Tailwind imports
+- src/data.js — initialContacts used on first load
