@@ -2,7 +2,8 @@
 
 A small React + Vite contacts UI built with Tailwind CSS. Features a modern gradient UI, animated toasts, responsive layout and localStorage persistence.
 
-
+## Website Preview
+![App overview / contacts list](/tria-react-assignment/public/sc.png)
 
 
 ## Notable features
