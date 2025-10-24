@@ -2,6 +2,9 @@
 
 A small React + Vite contacts UI built with Tailwind CSS. Features a modern gradient UI, animated toasts, responsive layout and localStorage persistence.
 
+
+
+
 ## Notable features
 - Add / Edit / Delete contacts
 - View contact details in a read-only modal
@@ -58,7 +61,7 @@ Build for production:
 
 
 ## Deployed app
-Demo: https://triatask.vercel.app/
+Deployed here: https://triatask.vercel.app/
 
 ## Assumptions & design choices
 - LocalStorage is used for persistence to keep the app simple (no backend).
